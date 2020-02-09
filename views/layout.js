@@ -38,7 +38,7 @@ module.exports = content => html`
         </div>
       </div>
       <div class="container content">
-        ${content}
+        $${content}
       </div>
       <hr />
       <div id="footer" class="container text-muted">
