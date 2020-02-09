@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const routes = require('./routes/pages');
+const models = require('./models');
 
 const app = express();
 
@@ -9,10 +10,17 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', routes);
-// comment
 
-const PORT = 1337;
+const PORT = 3000;
 
-app.listen(PORT, () => {
-  console.log(`App listening in port ${PORT}`);
-});
+const init = async() => {
+  await models.User.sync();
+  await models.Page.sync();
+  console.log ('synced!');
+  app.listen(PORT, () => {
+    console.log(`Server listening in port ${PORT}`);
+  });
+};
+
+init();
+
