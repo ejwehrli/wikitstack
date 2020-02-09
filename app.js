@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-//const client = require("./db");
+const routes = require('./routes/pages');
 
 const app = express();
 
@@ -8,10 +8,7 @@ app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-    res.send("hello world");
-  });
-
+app.use('/', routes);
 
 
 const PORT = 1337;
